@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <title>Frontend Mentor | Results summary component</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="your-result">
+      <h1>Your Result</h1>
+      <div class="circle">
+        <div class="sevensix">76</div>
+        <div class="of-100">of 100</div>
+      </div>
+      <h2>Great</h2>
+      <p>You scored higher than 65% of the people who have taken these tests.</p>
+    </div>
+
+    <div class="summary">
+      <h2>Summary</h2>
+      <div id="stats-container"></div>
+      <button>Continue</button>
+    </div>
+  </div>
+
+  <script>
+    const statsData = [
+      {
+        category: "Reaction",
+        score: 80,
+        icon: "https://raw.githubusercontent.com/workname-wizard/fm-results-summary-component-main/247587317aeeedc8cd6844d229c5af86fb3dd860/results-summary-component-main/assets/images/icon-reaction.svg"
+      },
+      {
+        category: "Memory",
+        score: 92,
+        icon: "https://raw.githubusercontent.com/workname-wizard/fm-results-summary-component-main/247587317aeeedc8cd6844d229c5af86fb3dd860/results-summary-component-main/assets/images/icon-memory.svg"
+      },
+      {
+        category: "Verbal",
+        score: 61,
+        icon: "https://raw.githubusercontent.com/workname-wizard/fm-results-summary-component-main/247587317aeeedc8cd6844d229c5af86fb3dd860/results-summary-component-main/assets/images/icon-verbal.svg"
+      },
+      {
+        category: "Visual",
+        score: 72,
+        icon: "https://raw.githubusercontent.com/workname-wizard/fm-results-summary-component-main/247587317aeeedc8cd6844d229c5af86fb3dd860/results-summary-component-main/assets/images/icon-visual.svg"
+      }
+    ];
+
+    const colorMap = {
+      "Reaction": "red",
+      "Memory": "yellow",
+      "Verbal": "teal",
+      "Visual": "blue"
+    };
+
+    const container = document.getElementById('stats-container');
+
+    statsData.forEach(item => {
+      const statDiv = document.createElement('div');
+      statDiv.classList.add('stat', colorMap[item.category]);
+
+      statDiv.innerHTML = `
+        <div class="label">
+          <img src="${item.icon}" alt="${item.category} icon" class="icon" />
+          <span>${item.category}</span>
+        </div>
+        <div class="number">${item.score} / 100</div>
+      `;
+
+      container.appendChild(statDiv);
+    });
+  </script>
+</body>
+</html>
